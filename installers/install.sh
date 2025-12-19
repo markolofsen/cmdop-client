@@ -199,6 +199,7 @@ if command_exists cmdop; then
     echo -e "${BLUE}🚀 Quick Start:${NC}"
     echo ""
     echo -e "   ${GREEN}cmdop auth login${NC}     Login to your account"
+    echo -e "   ${GREEN}cmdop agent start${NC}    Run agent in background"
     echo -e "   ${GREEN}cmdop connect${NC}        Start terminal session"
     echo -e "   ${GREEN}cmdop --help${NC}         Show all commands"
     echo ""

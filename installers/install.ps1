@@ -99,15 +99,12 @@ try {
     Write-Host ""
     Write-Host "🎉 cmdop installed successfully!" -ForegroundColor Green
     Write-Host ""
-    Write-Host "📚 Quick Start:" -ForegroundColor Blue
+    Write-Host "🚀 Quick Start:" -ForegroundColor Blue
     Write-Host ""
-    Write-Host "1. Interactive Mode (one-time connection):" -ForegroundColor Yellow
-    Write-Host "   PS> cmdop connect"
-    Write-Host ""
-    Write-Host "2. Daemon Mode (persistent background service):" -ForegroundColor Yellow
-    Write-Host "   PS> cmdop daemon start --mode prod"
-    Write-Host "   PS> cmdop daemon status"
-    Write-Host "   PS> cmdop daemon logs -f"
+    Write-Host "   cmdop auth login     Login to your account" -ForegroundColor Green
+    Write-Host "   cmdop agent start    Run agent in background" -ForegroundColor Green
+    Write-Host "   cmdop connect        Start terminal session" -ForegroundColor Green
+    Write-Host "   cmdop --help         Show all commands" -ForegroundColor Green
     Write-Host ""
     Write-Host "⚙️  Configuration:" -ForegroundColor Blue
     Write-Host "   Config: %APPDATA%\cmdop\config.yaml"
