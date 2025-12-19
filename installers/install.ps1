@@ -42,7 +42,16 @@ New-Item -ItemType Directory -Force -Path $INSTALL_DIR | Out-Null
 $binaryPath = Join-Path $INSTALL_DIR "$BINARY_NAME.exe"
 
 try {
-    Invoke-WebRequest -Uri $downloadUrl -OutFile $binaryPath -UseBasicParsing
+    # Show download progress
+    $ProgressPreference = 'Continue'
+
+    # Try BITS transfer first (shows native Windows progress)
+    if (Get-Command Start-BitsTransfer -ErrorAction SilentlyContinue) {
+        Start-BitsTransfer -Source $downloadUrl -Destination $binaryPath -Description "Downloading cmdop..."
+    } else {
+        # Fallback to Invoke-WebRequest with progress
+        Invoke-WebRequest -Uri $downloadUrl -OutFile $binaryPath
+    }
 } catch {
     Write-Host "❌ Failed to download cmdop" -ForegroundColor Red
     Write-Host ""

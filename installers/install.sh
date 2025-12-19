@@ -104,7 +104,7 @@ BINARY_PATH="$TMP_DIR/$BINARY_NAME"
 
 # Download binary
 if command_exists curl; then
-    curl -fsSL "$DOWNLOAD_URL" -o "$BINARY_PATH" || {
+    curl -fL --progress-bar "$DOWNLOAD_URL" -o "$BINARY_PATH" || {
         echo -e "${RED}❌ Failed to download cmdop${NC}"
         echo ""
         echo "💡 Try downloading manually:"
@@ -114,7 +114,7 @@ if command_exists curl; then
         exit 1
     }
 elif command_exists wget; then
-    wget -q "$DOWNLOAD_URL" -O "$BINARY_PATH" || {
+    wget --progress=bar:force "$DOWNLOAD_URL" -O "$BINARY_PATH" 2>&1 || {
         echo -e "${RED}❌ Failed to download cmdop${NC}"
         exit 1
     }
