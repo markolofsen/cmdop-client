@@ -93,29 +93,64 @@ DOWNLOAD_URL="$BASE_URL/$BINARY_FILE"
 
 echo -e "${BLUE}⬇️  Downloading from: $DOWNLOAD_URL${NC}"
 
-# Create temp directory
-TMP_DIR=$(mktemp -d)
+# Create temp directory in a safe location
+# This works regardless of current directory (even if it's read-only like /)
+if [ -n "$TMPDIR" ]; then
+    # macOS/BSD sets TMPDIR
+    TMP_BASE="$TMPDIR"
+elif [ -d "/tmp" ] && [ -w "/tmp" ]; then
+    # Linux/Unix standard
+    TMP_BASE="/tmp"
+else
+    # Fallback to home directory
+    TMP_BASE="$HOME"
+fi
+
+TMP_DIR=$(mktemp -d "${TMP_BASE}/cmdop-install.XXXXXX" 2>/dev/null || mktemp -d)
 cleanup() {
     rm -rf "$TMP_DIR"
 }
 trap cleanup EXIT
+
+# Verify temp directory is writable
+if [ ! -w "$TMP_DIR" ]; then
+    echo -e "${RED}❌ Cannot create writable temporary directory${NC}"
+    echo ""
+    echo "💡 Try running from your home directory:"
+    echo "   cd ~"
+    echo "   curl -sSL $DOWNLOAD_URL | bash"
+    exit 1
+fi
 
 BINARY_PATH="$TMP_DIR/$BINARY_NAME"
 
 # Download binary
 if command_exists curl; then
     curl -fL --progress-bar "$DOWNLOAD_URL" -o "$BINARY_PATH" || {
+        CURL_EXIT=$?
         echo -e "${RED}❌ Failed to download cmdop${NC}"
         echo ""
-        echo "💡 Try downloading manually:"
-        echo "   curl -L $DOWNLOAD_URL -o cmdop"
-        echo "   chmod +x cmdop"
-        echo "   sudo mv cmdop /usr/local/bin/"
+        if [ $CURL_EXIT -eq 56 ]; then
+            echo "💡 Network error (timeout or connection issue)"
+            echo "   Please check your internet connection and try again"
+        else
+            echo "💡 Try downloading manually to a writable directory:"
+            echo "   cd ~/Downloads"
+            echo "   curl -L $DOWNLOAD_URL -o cmdop"
+            echo "   chmod +x cmdop"
+            echo "   sudo mv cmdop /usr/local/bin/"
+        fi
         exit 1
     }
 elif command_exists wget; then
     wget --progress=bar:force "$DOWNLOAD_URL" -O "$BINARY_PATH" 2>&1 || {
         echo -e "${RED}❌ Failed to download cmdop${NC}"
+        echo ""
+        echo "💡 Try downloading manually to a writable directory:"
+        echo "   cd ~/Downloads"
+        echo "   wget $DOWNLOAD_URL -O cmdop"
+        echo "   chmod +x cmdop"
+        echo "   sudo mv cmdop /usr/local/bin/"
         exit 1
     }
 else

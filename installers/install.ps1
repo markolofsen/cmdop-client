@@ -2,15 +2,16 @@
 # Downloads and installs the cmdop command-line tool
 #
 # Usage:
-#   iwr https://api.cmdop.com/media/cmdop_cli/install.ps1 -UseBasicParsing | iex
+#   iwr -useb https://cdn.jsdelivr.net/gh/markolofsen/cmdop-client@main/installers/install.ps1 | iex
 #
 # Or with custom installation directory:
-#   $env:CMDOP_INSTALL_DIR="C:\Tools"; iwr https://api.cmdop.com/media/cmdop_cli/install.ps1 -UseBasicParsing | iex
+#   $env:CMDOP_INSTALL_DIR="C:\Tools"; iwr -useb https://cdn.jsdelivr.net/gh/markolofsen/cmdop-client@main/installers/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
 $BINARY_NAME = "cmdop"
-$BASE_URL = "https://api.cmdop.com/media/cmdop_cli"
+$GITHUB_REPO = "markolofsen/cmdop-client"
+$BASE_URL = "https://github.com/$GITHUB_REPO/releases/latest/download"
 
 # Default installation directory
 $INSTALL_DIR = $env:CMDOP_INSTALL_DIR
@@ -34,12 +35,12 @@ $binaryFile = "$BINARY_NAME-windows-$arch.exe"
 $downloadUrl = "$BASE_URL/$binaryFile"
 
 Write-Host "⬇️  Downloading from: $downloadUrl" -ForegroundColor Blue
+Write-Host ""
 
-# Create installation directory
-New-Item -ItemType Directory -Force -Path $INSTALL_DIR | Out-Null
-
-# Download binary
-$binaryPath = Join-Path $INSTALL_DIR "$BINARY_NAME.exe"
+# Create temporary directory for download
+$tempDir = Join-Path $env:TEMP "cmdop-install-$(Get-Random)"
+New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+$tempBinary = Join-Path $tempDir "$BINARY_NAME.exe"
 
 try {
     # Show download progress
@@ -47,21 +48,41 @@ try {
 
     # Try BITS transfer first (shows native Windows progress)
     if (Get-Command Start-BitsTransfer -ErrorAction SilentlyContinue) {
-        Start-BitsTransfer -Source $downloadUrl -Destination $binaryPath -Description "Downloading cmdop..."
+        Start-BitsTransfer -Source $downloadUrl -Destination $tempBinary -Description "Downloading cmdop..."
     } else {
         # Fallback to Invoke-WebRequest with progress
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $binaryPath
+        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempBinary -UseBasicParsing
     }
 } catch {
     Write-Host "❌ Failed to download cmdop" -ForegroundColor Red
     Write-Host ""
-    Write-Host "💡 Try downloading manually:" -ForegroundColor Yellow
-    Write-Host "   Invoke-WebRequest -Uri $downloadUrl -OutFile cmdop.exe"
-    Write-Host "   Move-Item cmdop.exe $INSTALL_DIR\"
+    
+    # Check if it's a network error
+    if ($_.Exception.Message -match "504|timeout|connection") {
+        Write-Host "💡 Network error (timeout or connection issue)" -ForegroundColor Yellow
+        Write-Host "   Please check your internet connection and try again" -ForegroundColor Yellow
+    } else {
+        Write-Host "💡 Try downloading manually to a writable directory:" -ForegroundColor Yellow
+        Write-Host "   cd ~\Downloads" -ForegroundColor White
+        Write-Host "   Invoke-WebRequest -Uri $downloadUrl -OutFile cmdop.exe" -ForegroundColor White
+        Write-Host "   Move-Item cmdop.exe $INSTALL_DIR\" -ForegroundColor White
+    }
+    
+    # Cleanup temp directory
+    Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
     exit 1
 }
 
-Write-Host "📦 Installing to: $binaryPath" -ForegroundColor Blue
+# Create installation directory
+Write-Host "📦 Installing to: $INSTALL_DIR" -ForegroundColor Blue
+New-Item -ItemType Directory -Force -Path $INSTALL_DIR | Out-Null
+
+# Move binary to installation directory
+$binaryPath = Join-Path $INSTALL_DIR "$BINARY_NAME.exe"
+Move-Item -Path $tempBinary -Destination $binaryPath -Force
+
+# Cleanup temp directory
+Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
 
 # Check if directory is in PATH
 $currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
