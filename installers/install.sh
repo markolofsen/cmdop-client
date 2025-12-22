@@ -91,7 +91,7 @@ echo -e "${BLUE}💻 Detected: $OS/$ARCH${NC}"
 BINARY_FILE="$BINARY_NAME-$OS-$ARCH"
 DOWNLOAD_URL="$BASE_URL/$BINARY_FILE"
 
-echo -e "${BLUE}⬇️  Downloading from: $DOWNLOAD_URL${NC}"
+echo -e "${BLUE}⬇️  Downloading cmdop...${NC}"
 
 # Create temp directory in a safe location
 # This works regardless of current directory (even if it's read-only like /)
@@ -124,35 +124,69 @@ fi
 
 BINARY_PATH="$TMP_DIR/$BINARY_NAME"
 
-# Download binary
+# Download with animated spinner
+download_with_spinner() {
+    local url=$1
+    local output=$2
+    local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    local i=0
+
+    # Start download in background
+    curl -fL "$url" -o "$output" 2>/dev/null &
+    local pid=$!
+
+    # Show spinner while downloading
+    while kill -0 $pid 2>/dev/null; do
+        i=$(( (i+1) % 10 ))
+        printf "\r   ${GREEN}${spin:$i:1}${NC} Downloading..." >&2
+        sleep 0.1
+    done
+
+    wait $pid
+    local exit_code=$?
+
+    if [ $exit_code -eq 0 ]; then
+        # Show success with file size
+        local size_mb=$(ls -l "$output" 2>/dev/null | awk '{printf "%.1f", $5/1048576}')
+        printf "\r   ${GREEN}✓${NC} Downloaded (${size_mb} MB)                    \n" >&2
+    fi
+
+    return $exit_code
+}
+
 if command_exists curl; then
-    curl -fL --progress-bar "$DOWNLOAD_URL" -o "$BINARY_PATH" || {
+    download_with_spinner "$DOWNLOAD_URL" "$BINARY_PATH" || {
         CURL_EXIT=$?
+        echo ""
         echo -e "${RED}❌ Failed to download cmdop${NC}"
         echo ""
         if [ $CURL_EXIT -eq 56 ]; then
             echo "💡 Network error (timeout or connection issue)"
             echo "   Please check your internet connection and try again"
         else
-            echo "💡 Try downloading manually to a writable directory:"
-            echo "   cd ~/Downloads"
-            echo "   curl -L $DOWNLOAD_URL -o cmdop"
-            echo "   chmod +x cmdop"
-            echo "   sudo mv cmdop /usr/local/bin/"
+            echo "💡 Try downloading manually:"
+            echo "   curl -L $DOWNLOAD_URL -o cmdop && chmod +x cmdop && sudo mv cmdop /usr/local/bin/"
         fi
         exit 1
     }
 elif command_exists wget; then
-    wget --progress=bar:force "$DOWNLOAD_URL" -O "$BINARY_PATH" 2>&1 || {
-        echo -e "${RED}❌ Failed to download cmdop${NC}"
+    # wget fallback with spinner
+    spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    wget -q "$DOWNLOAD_URL" -O "$BINARY_PATH" &
+    pid=$!
+    i=0
+    while kill -0 $pid 2>/dev/null; do
+        i=$(( (i+1) % 10 ))
+        printf "\r   ${GREEN}${spin:$i:1}${NC} Downloading..."
+        sleep 0.1
+    done
+    wait $pid || {
         echo ""
-        echo "💡 Try downloading manually to a writable directory:"
-        echo "   cd ~/Downloads"
-        echo "   wget $DOWNLOAD_URL -O cmdop"
-        echo "   chmod +x cmdop"
-        echo "   sudo mv cmdop /usr/local/bin/"
+        echo -e "${RED}❌ Failed to download cmdop${NC}"
         exit 1
     }
+    size_mb=$(ls -l "$BINARY_PATH" 2>/dev/null | awk '{printf "%.1f", $5/1048576}')
+    printf "\r   ${GREEN}✓${NC} Downloaded (${size_mb} MB)                    \n"
 else
     echo -e "${RED}❌ Error: curl or wget is required${NC}"
     exit 1
