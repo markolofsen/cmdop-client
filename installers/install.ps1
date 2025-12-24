@@ -122,7 +122,7 @@ try {
     Write-Host ""
     Write-Host "🚀 Quick Start:" -ForegroundColor Blue
     Write-Host ""
-    Write-Host "   cmdop auth login     Login to your account" -ForegroundColor Green
+    Write-Host "   cmdop login          Login to your account" -ForegroundColor Green
     Write-Host "   cmdop agent start    Run agent in background" -ForegroundColor Green
     Write-Host "   cmdop connect        Start terminal session" -ForegroundColor Green
     Write-Host "   cmdop --help         Show all commands" -ForegroundColor Green
