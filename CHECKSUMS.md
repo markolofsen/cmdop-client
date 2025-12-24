@@ -1,14 +1,14 @@
 # Checksums
 
-**Version:** v1.0.16
-**Commit:** 95b53a4
-**Built:** 2025-12-24T14:06:16Z
+**Version:** v1.0.17
+**Commit:** 0ec961b
+**Built:** 2025-12-24T18:14:32Z
 
 ## Verify Download
 
 ```bash
 # Download checksums
-curl -sSL https://github.com/markolofsen/cmdop-client/releases/download/v1.0.16/SHA256SUMS -o SHA256SUMS
+curl -sSL https://github.com/markolofsen/cmdop-client/releases/download/v1.0.17/SHA256SUMS -o SHA256SUMS
 
 # Verify your binary (replace with your platform)
 shasum -a 256 -c SHA256SUMS --ignore-missing
@@ -18,8 +18,8 @@ shasum -a 256 -c SHA256SUMS --ignore-missing
 
 | Platform | File | SHA256 |
 |----------|------|--------|
-| darwin-amd64 | `cmdop-darwin-amd64` | `e3175ea0907f8bc4c899b1dae4761337ecdb14e8278e7bcdd019d9d8a30a9ee1` |
-| darwin-arm64 | `cmdop-darwin-arm64` | `dffcbed0414fe74649898089a5de8b7b32cc128c6ad961eea05e9a6e4f29f37a` |
-| linux-amd64 | `cmdop-linux-amd64` | `c8bd9d38fb62d88f7eec4484595eecf5f3512ffd491a844c7a5eeb9cbd60a1cb` |
-| linux-arm64 | `cmdop-linux-arm64` | `6c593dbc8c9a504c933981db2a90208c55ac09c58409978d944643e3c7ea7bb6` |
-| windows-amd64 | `cmdop-windows-amd64.exe` | `8f8fe443b593ef6643a3102969e832b5a07e896686d130ea7c2951e749ea1826` |
+| darwin-amd64 | `cmdop-darwin-amd64` | `1193917aa10f7d1bd836a896525bb1a0b7cef70a8977e45087009aaddee76e94` |
+| darwin-arm64 | `cmdop-darwin-arm64` | `f3fdd761e35165de14657a8534674ceb512171d982185b5635d00d6de3b05959` |
+| linux-amd64 | `cmdop-linux-amd64` | `8f0a8bdd56911753b66c4d2bf9be177b75887c5b8141ed69352551db09bd63f0` |
+| linux-arm64 | `cmdop-linux-arm64` | `742e9eb2166f8ff390eb435a12958604fe1b07705301a1b3add5b9a2cea282cf` |
+| windows-amd64 | `cmdop-windows-amd64.exe` | `252e9dd92a8682a5d37d94c9088dc8b34d5f9d5996cd86a06e3969adb230c035` |
