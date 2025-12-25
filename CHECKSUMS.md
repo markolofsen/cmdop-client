@@ -1,8 +1,8 @@
 # Checksums
 
 **Version:** v1.0.19
-**Commit:** acaaca86
-**Built:** 2025-12-25T09:11:39Z
+**Commit:** 54d4ca37
+**Built:** 2025-12-25T09:16:52Z
 
 ## Verify Download
 
@@ -18,8 +18,8 @@ shasum -a 256 -c SHA256SUMS --ignore-missing
 
 | Platform | File | SHA256 |
 |----------|------|--------|
-| linux-arm64 | `cmdop-linux-arm64` | `fe967fe60df4ea2ad37a7be5f7b773b1be6744ebb981752754a18c73c55f153d` |
-| linux-x64 | `cmdop-linux-x64` | `411263ceb07f0445a49e4a4021523886ab6826c6460b94b20b88a3a03c8d929f` |
-| macos-intel | `cmdop-macos-intel` | `abb592d2a9a3d47c38db781c614de1da5e9b3a3be3dc30c600eb08fd1ef92632` |
-| macos-silicon | `cmdop-macos-silicon` | `4ace432ce4a057fbc6d20d47209c9464908d0b2e45439610320765248a124559` |
-| windows-x64 | `cmdop-windows-x64.exe` | `a94fb70411ff201b4fc81cac9d6af762d84d9d501c95caeddcdf656d5ce11700` |
+| linux-arm64 | `cmdop-linux-arm64` | `7633dabb5e45b7fd6c05616df0dc53634fa7247faa9e148ab0b45e56b3cc08e5` |
+| linux-x64 | `cmdop-linux-x64` | `39bd1532f318cb621c1f57132c0a23aac84765bdc7dec70787a7972bc2a52283` |
+| macos-intel.zip | `cmdop-macos-intel.zip` | `2725c4e4e4acfda9a730894b9054d6da41fc922ebba69548915c84a67e5705d3` |
+| macos-silicon.zip | `cmdop-macos-silicon.zip` | `fedb49f383a701298681c89c5232df1b57b75be19d155f794e8c38c013e50666` |
+| windows-x64 | `cmdop-windows-x64.exe` | `2aad4d1c3265e2d313b4c8dca23d2a7426d80528ab7c8aeffef1e99c57b8c251` |
