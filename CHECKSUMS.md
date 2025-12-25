@@ -1,8 +1,8 @@
 # Checksums
 
 **Version:** v1.0.20
-**Commit:** 918f034f
-**Built:** 2025-12-25T09:27:56Z
+**Commit:** b641267e
+**Built:** 2025-12-25T09:31:57Z
 
 ## Verify Download
 
@@ -18,9 +18,9 @@ shasum -a 256 -c SHA256SUMS --ignore-missing
 
 | Platform | File | SHA256 |
 |----------|------|--------|
-| linux-arm64 | `cmdop-linux-arm64` | `7b133687aae848dca2c768e57b6ce8ab6dc76d01cf3d68a8906aacafda580204` |
-| linux-x64 | `cmdop-linux-x64` | `9df924c51b687c0fc38ada40dd5230aee8a41d93d20774e1891fd6b11fba797f` |
-| macos-intel | `cmdop-macos-intel.zip` | `6ff200577ddec2b2a9e972c863254a1c7203214fe4de90d014a9cdd81779e2d9` |
-| macos-silicon | `cmdop-macos-silicon.zip` | `3c2081e748189b93462bfed11418ec6ce9dbcf1e93c16efaffe185cfd0902603` |
-| windows-x64 | `cmdop-windows-x64.exe` | `e8eaeeebd27aaa5794a7808bc9e03c0ef82bf2e092df0c85ea64d39ffa0bbb73` |
-| macos | `CMDOP-macos.dmg` | `75db65138612558c3fd4b79ffb36dd45faa9436d7f15ad9b7b1a1276a2c95d31` |
+| linux-arm64 | `cmdop-linux-arm64` | `73fdd8c1080a375deb96749ef67e027193fd0eab8f6bf346aa30ec938c653b6a` |
+| linux-x64 | `cmdop-linux-x64` | `1a7e176b9c91d9a5a6b6e6e837a1bdc38f34e5644a215afb96a6ee05e91dbb8e` |
+| macos-intel | `cmdop-macos-intel.zip` | `87ee71617d63d15abd55f2e3281a2a879ba585ed257f24aaee9cfa5a4c62ba6c` |
+| macos-silicon | `cmdop-macos-silicon.zip` | `50d936dc83e859f13eed3165594bfbf9c16038cb5088a8392dbc8dba379fbd6b` |
+| windows-x64 | `cmdop-windows-x64.exe` | `576e2ffdf4049a0dd17ba7355929b3336dc096c304b9bcbcbda444a2d3cf2d19` |
+| rw.20373.1.0.20 | `rw.20373.CMDOP-1.0.20.dmg` | `b241b123542bdfd7f7cc2689eb707af85c0932a8cba54bdfd85e76b69560e042` |
