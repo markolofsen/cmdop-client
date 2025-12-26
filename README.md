@@ -12,6 +12,10 @@
 curl -sSL https://cmdop.com/install.sh | bash
 ```
 
+### macOS App (with menu bar)
+
+Download [CMDOP-macos.dmg](https://github.com/markolofsen/cmdop-client/releases/latest/download/CMDOP-macos.dmg) - includes system tray with quick access to connect/disconnect.
+
 ### Manual Download
 
 **Linux x64:**
@@ -42,7 +46,7 @@ Download `cmdop-windows-x64.exe` from [releases](https://github.com/markolofsen/
 
 ```bash
 cmdop login          # Authenticate
-cmdop agent start    # Start background agent
+cmdop agent start    # Start background agent (auto-updates on start)
 cmdop connect        # Connect to terminal session
 ```
 
@@ -55,10 +59,11 @@ cmdop connect        # Connect to terminal session
 | `cmdop login` | Login to CMDOP (device flow) |
 | `cmdop logout` | Logout and clear credentials |
 | `cmdop connect` | Connect to terminal session |
+| `cmdop tray` | Start menu bar app (macOS) |
 | `cmdop logs` | View daemon logs |
 | `cmdop logs -f` | Follow logs in real-time |
 | `cmdop monitor` | TUI dashboard (logs, metrics, gRPC) |
-| `cmdop update` | Check for updates |
+| `cmdop update` | Check and install updates (auto-restarts agent) |
 | `cmdop version` | Show version |
 
 ### Agent Management
@@ -72,6 +77,11 @@ The agent runs in background and keeps your machine accessible.
 | `cmdop agent restart` | Restart agent |
 | `cmdop agent status` | Show agent status |
 | `cmdop agent logs` | Show agent logs |
+
+**Features:**
+- Auto-updates on start (checks for new version)
+- Auto-reconnects on connection loss
+- Auto-start on boot (when installed as service)
 
 ### System Service
 
@@ -140,6 +150,7 @@ Use `cmdop logs --path` to see exact path.
 ## Links
 
 - Website: [cmdop.com](https://cmdop.com)
+- Dashboard: [cmdop.com/dashboard](https://cmdop.com/dashboard)
 - Releases: [GitHub Releases](https://github.com/markolofsen/cmdop-client/releases)
 
 ## License
