@@ -75,20 +75,37 @@ case "${OS}" in
 esac
 
 case "${ARCH}" in
-    x86_64)    ARCH=amd64;;
+    x86_64)    ARCH=x64;;
     arm64)     ARCH=arm64;;
     aarch64)   ARCH=arm64;;
     *)
         echo -e "${RED}❌ Unsupported Architecture: ${ARCH}${NC}"
-        echo "   Supported: amd64, arm64"
+        echo "   Supported: x64, arm64"
         exit 1
+        ;;
+esac
+
+# Map OS names to release file names
+case "${OS}" in
+    linux)   OS_LABEL=linux;;
+    darwin)
+        case "${ARCH}" in
+            x64)   OS_LABEL=macos-intel;;
+            arm64) OS_LABEL=macos-silicon;;
+        esac
         ;;
 esac
 
 echo -e "${BLUE}💻 Detected: $OS/$ARCH${NC}"
 
 # Construct Download URL
-BINARY_FILE="$BINARY_NAME-$OS-$ARCH"
+# For macOS: cmdop-macos-intel.zip or cmdop-macos-silicon.zip
+# For Linux: cmdop-linux-x64 or cmdop-linux-arm64
+if [ "$OS" = "darwin" ]; then
+    BINARY_FILE="$BINARY_NAME-$OS_LABEL.zip"
+else
+    BINARY_FILE="$BINARY_NAME-$OS-$ARCH"
+fi
 DOWNLOAD_URL="$BASE_URL/$BINARY_FILE"
 
 echo -e "${BLUE}⬇️  Downloading cmdop...${NC}"
@@ -190,6 +207,15 @@ elif command_exists wget; then
 else
     echo -e "${RED}❌ Error: curl or wget is required${NC}"
     exit 1
+fi
+
+# For macOS, extract the binary from ZIP
+if [ "$OS" = "darwin" ]; then
+    echo -e "${BLUE}📦 Extracting...${NC}"
+    DOWNLOAD_PATH="$TMP_DIR/$BINARY_FILE"
+    mv "$BINARY_PATH" "$DOWNLOAD_PATH"
+    unzip -q "$DOWNLOAD_PATH" -d "$TMP_DIR"
+    mv "$TMP_DIR/cmdop" "$BINARY_PATH"
 fi
 
 # Make binary executable
