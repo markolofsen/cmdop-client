@@ -85,27 +85,18 @@ case "${ARCH}" in
         ;;
 esac
 
-# Map OS names to release file names
-case "${OS}" in
-    linux)   OS_LABEL=linux;;
-    darwin)
-        case "${ARCH}" in
-            x64)   OS_LABEL=macos-intel;;
-            arm64) OS_LABEL=macos-silicon;;
-        esac
-        ;;
+# Map OS/ARCH to release file names
+case "${OS}/${ARCH}" in
+    linux/x64)    PLATFORM_LABEL="linux-x64";;
+    linux/arm64)  PLATFORM_LABEL="linux-arm64";;
+    darwin/x64)   PLATFORM_LABEL="macos-intel";;
+    darwin/arm64) PLATFORM_LABEL="macos-silicon";;
 esac
 
 echo -e "${BLUE}💻 Detected: $OS/$ARCH${NC}"
 
 # Construct Download URL
-# For macOS: cmdop-macos-intel.zip or cmdop-macos-silicon.zip
-# For Linux: cmdop-linux-x64 or cmdop-linux-arm64
-if [ "$OS" = "darwin" ]; then
-    BINARY_FILE="$BINARY_NAME-$OS_LABEL.zip"
-else
-    BINARY_FILE="$BINARY_NAME-$OS-$ARCH"
-fi
+BINARY_FILE="$BINARY_NAME-$PLATFORM_LABEL"
 DOWNLOAD_URL="$BASE_URL/$BINARY_FILE"
 
 echo -e "${BLUE}⬇️  Downloading cmdop...${NC}"
@@ -207,15 +198,6 @@ elif command_exists wget; then
 else
     echo -e "${RED}❌ Error: curl or wget is required${NC}"
     exit 1
-fi
-
-# For macOS, extract the binary from ZIP
-if [ "$OS" = "darwin" ]; then
-    echo -e "${BLUE}📦 Extracting...${NC}"
-    DOWNLOAD_PATH="$TMP_DIR/$BINARY_FILE"
-    mv "$BINARY_PATH" "$DOWNLOAD_PATH"
-    unzip -q "$DOWNLOAD_PATH" -d "$TMP_DIR"
-    mv "$TMP_DIR/cmdop" "$BINARY_PATH"
 fi
 
 # Make binary executable
