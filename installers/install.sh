@@ -273,12 +273,12 @@ if command_exists cmdop; then
 
     echo -e "${GREEN}🎉 cmdop v${INSTALLED_VERSION} installed successfully!${NC}"
     echo ""
-    echo -e "${BLUE}🚀 Quick Start:${NC}"
+    echo -e "${BLUE}🚀 Get Started:${NC}"
     echo ""
-    echo -e "   ${GREEN}cmdop login${NC}          Login to your account"
-    echo -e "   ${GREEN}cmdop agent start${NC}    Run agent in background"
-    echo -e "   ${GREEN}cmdop connect${NC}        Start terminal session"
-    echo -e "   ${GREEN}cmdop --help${NC}         Show all commands"
+    echo -e "   ${GREEN}cmdop login${NC}    Login and start agent automatically"
+    echo ""
+    echo -e "   After login, your machine will be online and accessible."
+    echo -e "   Agent auto-starts on boot - no additional setup needed."
     echo ""
 else
     echo -e "${YELLOW}⚠️  cmdop was installed but is not in your PATH${NC}"

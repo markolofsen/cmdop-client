@@ -14,12 +14,25 @@ curl -sSL https://cmdop.com/install.sh | bash
 
 ### Manual Download
 
-| Platform | Command |
-|----------|---------|
-| **Linux x64** | `curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-linux-x64 -o cmdop && chmod +x cmdop && sudo mv cmdop /usr/local/bin/` |
-| **Linux ARM64** | `curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-linux-arm64 -o cmdop && chmod +x cmdop && sudo mv cmdop /usr/local/bin/` |
-| **macOS Intel** | `curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-macos-intel -o cmdop && chmod +x cmdop && sudo mv cmdop /usr/local/bin/` |
-| **macOS Silicon** | `curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-macos-silicon -o cmdop && chmod +x cmdop && sudo mv cmdop /usr/local/bin/` |
+**Linux x64:**
+```bash
+sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-linux-x64 -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+```
+
+**Linux ARM64:**
+```bash
+sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-linux-arm64 -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+```
+
+**macOS Intel:**
+```bash
+sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-macos-intel -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+```
+
+**macOS Silicon:**
+```bash
+sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-macos-silicon -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+```
 
 ### Windows
 
