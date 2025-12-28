@@ -266,10 +266,40 @@ EOF
     echo ""
 fi
 
+# Setup system service for auto-start
+setup_service() {
+    echo -e "${BLUE}⚙️  Setting up system service for auto-start...${NC}"
+
+    # Use the built-in service install command
+    if [ "$NEED_SUDO" = true ]; then
+        if sudo cmdop service install --system 2>/dev/null; then
+            echo -e "${GREEN}✅ System service installed and enabled${NC}"
+            echo -e "   Agent will auto-start on boot"
+            # Start the service now
+            sudo cmdop service start --system 2>/dev/null || true
+        else
+            echo -e "${YELLOW}⚠️  Could not install system service${NC}"
+            echo -e "   You can manually install later: sudo cmdop service install --system"
+        fi
+    else
+        if cmdop service install --system 2>/dev/null; then
+            echo -e "${GREEN}✅ System service installed and enabled${NC}"
+            echo -e "   Agent will auto-start on boot"
+            cmdop service start --system 2>/dev/null || true
+        else
+            echo -e "${YELLOW}⚠️  Could not install system service${NC}"
+            echo -e "   You can manually install later: cmdop service install --system"
+        fi
+    fi
+}
+
 # Verify installation and show quick start
 if command_exists cmdop; then
     # Get installed version
     INSTALLED_VERSION=$(cmdop version 2>/dev/null | head -1 | sed 's/CMDOP CLI version //' || echo "unknown")
+
+    # Setup system service for auto-start (Linux/macOS)
+    setup_service
 
     echo -e "${GREEN}🎉 cmdop v${INSTALLED_VERSION} installed successfully!${NC}"
     echo ""
