@@ -1,14 +1,14 @@
 # Checksums
 
-**Version:** v1.0.133
-**Commit:** 366ce693
-**Built:** 2026-01-12T07:43:11Z
+**Version:** v1.0.134
+**Commit:** 784dee45
+**Built:** 2026-01-12T08:31:30Z
 
 ## Verify Download
 
 ```bash
 # Download checksums
-curl -sSL https://github.com/markolofsen/cmdop-client/releases/download/v1.0.133/SHA256SUMS -o SHA256SUMS
+curl -sSL https://github.com/markolofsen/cmdop-client/releases/download/v1.0.134/SHA256SUMS -o SHA256SUMS
 
 # Verify your binary (replace with your platform)
 shasum -a 256 -c SHA256SUMS --ignore-missing
@@ -18,8 +18,8 @@ shasum -a 256 -c SHA256SUMS --ignore-missing
 
 | Platform | File | SHA256 |
 |----------|------|--------|
-| linux-arm64 | `cmdop-linux-arm64` | `4e20da6914a0a230216d6dadf023268d8242dd9053f2b834979eadc1fcf263c1` |
-| linux-x64 | `cmdop-linux-x64` | `42dca68473bc7d6c4e68e07c8609cc60558057b082029e6d8739e433e838b052` |
-| macos-intel | `cmdop-macos-intel` | `ae2782055fba85fd3666c74897d4e8611ed9f2dc268cf2691af23d6262e27da2` |
-| macos-silicon | `cmdop-macos-silicon` | `cf6c923ea9f9471c254e4487f56686493cba9521a6def25c50962f7860c383c3` |
-| windows-x64 | `cmdop-windows-x64.exe` | `8bf42b054a24a4af8cb7a316d22ee989d647058228249373b50d65a6df432a0a` |
+| linux-arm64 | `cmdop-linux-arm64` | `04c4fc68a76ad48a785f11382a5d34c5442e529c9419c3dc66f1473f644636ba` |
+| linux-x64 | `cmdop-linux-x64` | `7464a278ef2f89432180f0edde9a07fa904cd2ad460074b727d15256ae899995` |
+| macos-intel | `cmdop-macos-intel` | `9d52ba24cd4db44550d92d135b90e2da380043aad6368122867475a300357bcb` |
+| macos-silicon | `cmdop-macos-silicon` | `d112c0be2e7c837ad0844e545f1d84aefa5bc569d84c9d270ffbf7d255dd4d30` |
+| windows-x64 | `cmdop-windows-x64.exe` | `a26ebe50c20ad9526e5bc486f23e71a215e64273af367a17073a3d8a30ab9dec` |
