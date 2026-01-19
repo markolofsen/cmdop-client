@@ -1,14 +1,14 @@
 # Checksums
 
-**Version:** vwhisper-cli-1.8.13
-**Commit:** bad436f0
-**Built:** 2026-01-19T19:13:13Z
+**Version:** vwhisper-cli-1.8.14
+**Commit:** 896d7bff
+**Built:** 2026-01-19T19:25:29Z
 
 ## Verify Download
 
 ```bash
 # Download checksums
-curl -sSL https://github.com/markolofsen/cmdop-client/releases/download/vwhisper-cli-1.8.13/SHA256SUMS -o SHA256SUMS
+curl -sSL https://github.com/markolofsen/cmdop-client/releases/download/vwhisper-cli-1.8.14/SHA256SUMS -o SHA256SUMS
 
 # Verify your binary (replace with your platform)
 shasum -a 256 -c SHA256SUMS --ignore-missing
@@ -18,8 +18,8 @@ shasum -a 256 -c SHA256SUMS --ignore-missing
 
 | Platform | File | SHA256 |
 |----------|------|--------|
-| linux-arm64 | `cmdop-linux-arm64` | `52d0b28a95a598335b87bcb05f4ae3c492795c809404b2157f5885d37decb809` |
-| linux-x64 | `cmdop-linux-x64` | `a97eb0a607b143284bf5a91b2cf58045d8be44f20c8a07b82bd008ba2933efda` |
-| macos-intel | `cmdop-macos-intel` | `a7ce66ce8706ede8d46663329cc14a8050dd2c733874c866d4fddc892ddb3650` |
-| macos-silicon | `cmdop-macos-silicon` | `72347d0b3c67f1f0feda738ea8eccc57f41952cfcd9b41473c6b04e9e71d81b1` |
-| windows-x64 | `cmdop-windows-x64.exe` | `3d5331991c79f1223b672965cd4a388a1c40f017b6af697f25ec594206de0c4e` |
+| linux-arm64 | `cmdop-linux-arm64` | `f419882627c465cb936854335f2f769c62dd592883c4bca8682b667477a946e4` |
+| linux-x64 | `cmdop-linux-x64` | `87cc63c3635afa2e57c8a12d2550ab8a0bb2ce418cb76a0d61260ce4f3d3665d` |
+| macos-intel | `cmdop-macos-intel` | `30b31849b0a63a96ef7b9212986753886ba5825fe10c9f84e15f48243a6d6ebe` |
+| macos-silicon | `cmdop-macos-silicon` | `d608dc09deb4070ada66e93f1228bed967be38f8040d88e197b77de9712ff93e` |
+| windows-x64 | `cmdop-windows-x64.exe` | `14bcd8590f7f4181e4eb24f2d75e1d279c6ce3f5f3da8550bbc5929a73720ecb` |
