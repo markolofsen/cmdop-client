@@ -1,0 +1,1 @@
+ed9ef5042da1e9460969b20ffc6c00bbd61191fd8834c25a94eaa994b3991147  whisper-cli-1.8.3-darwin-arm64.tar.gz
