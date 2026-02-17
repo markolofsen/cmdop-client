@@ -2,15 +2,15 @@
 # Downloads and installs the cmdop command-line tool
 #
 # Usage:
-#   iwr -useb https://cdn.jsdelivr.net/gh/markolofsen/cmdop-client@main/installers/install.ps1 | iex
+#   iwr -useb https://cdn.jsdelivr.net/gh/commandoperator/cmdop-agent@main/installers/install.ps1 | iex
 #
 # Or with custom installation directory:
-#   $env:CMDOP_INSTALL_DIR="C:\Tools"; iwr -useb https://cdn.jsdelivr.net/gh/markolofsen/cmdop-client@main/installers/install.ps1 | iex
+#   $env:CMDOP_INSTALL_DIR="C:\Tools"; iwr -useb https://cdn.jsdelivr.net/gh/commandoperator/cmdop-agent@main/installers/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
 $BINARY_NAME = "cmdop"
-$GITHUB_REPO = "markolofsen/cmdop-client"
+$GITHUB_REPO = "commandoperator/cmdop-agent"
 $BASE_URL = "https://github.com/$GITHUB_REPO/releases/latest/download"
 
 # Default installation directory

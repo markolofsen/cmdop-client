@@ -4,10 +4,10 @@
 # Downloads and installs the cmdop command-line tool
 #
 # Usage:
-#   curl -sSL https://raw.githubusercontent.com/markolofsen/cmdop-client/main/installers/install.sh | bash
+#   curl -sSL https://raw.githubusercontent.com/commandoperator/cmdop-agent/main/installers/install.sh | bash
 #
 # Or with custom installation directory:
-#   curl -sSL https://raw.githubusercontent.com/markolofsen/cmdop-client/main/installers/install.sh | bash -s -- --prefix=$HOME/.local/bin
+#   curl -sSL https://raw.githubusercontent.com/commandoperator/cmdop-agent/main/installers/install.sh | bash -s -- --prefix=$HOME/.local/bin
 
 set -e
 
@@ -24,7 +24,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 BINARY_NAME="cmdop"
-GITHUB_REPO="markolofsen/cmdop-client"
+GITHUB_REPO="commandoperator/cmdop-agent"
 BASE_URL="https://github.com/${GITHUB_REPO}/releases/latest/download"
 
 # Default installation prefix

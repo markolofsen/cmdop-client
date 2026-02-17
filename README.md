@@ -1,8 +1,12 @@
-# cmdop - Remote Terminal Control
+# CMDOP Agent
 
-![cmdop demo](https://raw.githubusercontent.com/markolofsen/cmdop-client/refs/heads/main/static/demo.gif)
+**Secure remote terminal access for your machines.**
 
-**cmdop** is a CLI tool for secure remote terminal access. Control your machines from anywhere with real-time sessions and file operations.
+Control your servers from anywhere with real-time sessions, file operations, and AI-powered automation.
+
+> 📖 **Read the article**: [PicoClaw and OpenClaw Are Not Infrastructure: The $10 AI Agent Myth](https://medium.com/@reformsai/picoclaw-and-openclaw-are-not-infrastructure-the-10-ai-agent-myth-43d43e0726e3)
+
+![cmdop demo](https://raw.githubusercontent.com/commandoperator/cmdop-agent/refs/heads/main/static/demo.gif)
 
 ## Installation
 
@@ -12,35 +16,35 @@
 curl -sSL https://cmdop.com/install.sh | bash
 ```
 
-### macOS App (with menu bar)
+### macOS Desktop App
 
-Download [CMDOP-macos.dmg](https://github.com/markolofsen/cmdop-client/releases/latest/download/CMDOP-macos.dmg) - includes system tray with quick access to connect/disconnect.
+Download [CMDOP-macos.dmg](https://github.com/commandoperator/cmdop-agent/releases/latest/download/CMDOP-macos.dmg) - includes system tray with quick access.
 
 ### Manual Download
 
 **Linux x64:**
 ```bash
-sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-linux-x64 -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+sudo curl -L https://github.com/commandoperator/cmdop-agent/releases/latest/download/cmdop-linux-x64 -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
 ```
 
 **Linux ARM64:**
 ```bash
-sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-linux-arm64 -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+sudo curl -L https://github.com/commandoperator/cmdop-agent/releases/latest/download/cmdop-linux-arm64 -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
 ```
 
 **macOS Intel:**
 ```bash
-sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-macos-intel -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+sudo curl -L https://github.com/commandoperator/cmdop-agent/releases/latest/download/cmdop-macos-intel -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
 ```
 
 **macOS Silicon:**
 ```bash
-sudo curl -L https://github.com/markolofsen/cmdop-client/releases/latest/download/cmdop-macos-silicon -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
+sudo curl -L https://github.com/commandoperator/cmdop-agent/releases/latest/download/cmdop-macos-silicon -o /usr/local/bin/cmdop && sudo chmod +x /usr/local/bin/cmdop
 ```
 
 ### Windows
 
-Download `cmdop-windows-x64.exe` from [releases](https://github.com/markolofsen/cmdop-client/releases/latest).
+Download `cmdop-windows-x64.exe` from [releases](https://github.com/commandoperator/cmdop-agent/releases/latest).
 
 ## Quick Start
 
@@ -150,8 +154,9 @@ Use `cmdop logs --path` to see exact path.
 ## Links
 
 - Website: [cmdop.com](https://cmdop.com)
+- Documentation: [cmdop.com/docs](https://cmdop.com/docs)
 - Dashboard: [cmdop.com/dashboard](https://cmdop.com/dashboard)
-- Releases: [GitHub Releases](https://github.com/markolofsen/cmdop-client/releases)
+- Releases: [GitHub Releases](https://github.com/commandoperator/cmdop-agent/releases)
 
 ## License
 
